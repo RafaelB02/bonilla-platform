@@ -1,0 +1,16 @@
+name = "bonilla-intake"
+main = "src/index.ts"
+compatibility_date = "2026-11-01"
+
+[observability]
+enabled = true
+
+# Plain (non-secret) settings. Secrets are set with `wrangler secret put` - see README.
+[vars]
+SUPABASE_URL = "https://YOUR-PROJECT-REF.supabase.co"
+ALERT_TO_EMAIL = "bonillastreeservice@gmail.com"
+# Until bonillastreeservices.com is verified in Resend, onboarding@resend.dev can
+# only deliver to the email address that owns the Resend account.
+ALERT_FROM_EMAIL = "Bonilla Leads <onboarding@resend.dev>"
+ALLOWED_ORIGINS = "https://bonillastreeservices.com,https://www.bonillastreeservices.com"
+TURNSTILE_HOSTNAMES = "bonillastreeservices.com,www.bonillastreeservices.com"

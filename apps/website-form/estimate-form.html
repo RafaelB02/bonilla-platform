@@ -1,0 +1,329 @@
+<!--
+  Bonilla's Tree Services - estimate request form (English / Spanish)
+  Paste this whole file into a WordPress "Custom HTML" block.
+  Before pasting, set WORKER_URL below to your deployed Worker address.
+-->
+<div id="bts-estimate" lang="en">
+  <style>
+    #bts-estimate{--g:#1a5d1a;--g2:#134513;--bd:#c9cfc9;--err:#b00020;--mut:#555;max-width:640px;margin:0 auto;font-family:inherit;font-size:17px;color:#222;line-height:1.4}
+    #bts-estimate *{box-sizing:border-box}
+    #bts-estimate .bts-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:8px}
+    #bts-estimate h2{margin:0;font-size:26px;line-height:1.2}
+    #bts-estimate .bts-lang{display:flex;border:1px solid var(--bd);border-radius:8px;overflow:hidden}
+    #bts-estimate .bts-lang button{border:0;background:#fff;padding:8px 14px;font:inherit;font-size:15px;cursor:pointer;min-height:44px}
+    #bts-estimate .bts-lang button[aria-pressed="true"]{background:var(--g);color:#fff}
+    #bts-estimate .bts-sub{color:var(--mut);margin:0 0 20px}
+    #bts-estimate .bts-row{display:grid;grid-template-columns:1fr;gap:0 16px}
+    @media (min-width:560px){#bts-estimate .bts-row.two{grid-template-columns:1fr 1fr}#bts-estimate .bts-row.addr{grid-template-columns:2fr 1fr}}
+    #bts-estimate .bts-f{margin-bottom:16px}
+    #bts-estimate label,#bts-estimate legend{display:block;font-weight:600;margin-bottom:6px;font-size:16px}
+    #bts-estimate .bts-opt{font-weight:400;color:var(--mut);font-size:14px}
+    #bts-estimate input[type=text],#bts-estimate input[type=tel],#bts-estimate input[type=email],#bts-estimate select,#bts-estimate textarea{width:100%;font:inherit;font-size:17px;padding:12px;border:1px solid var(--bd);border-radius:8px;background:#fff;min-height:48px}
+    #bts-estimate textarea{min-height:110px;resize:vertical}
+    #bts-estimate input:focus,#bts-estimate select:focus,#bts-estimate textarea:focus{outline:3px solid #9bc59b;outline-offset:1px;border-color:var(--g)}
+    #bts-estimate [aria-invalid="true"]{border-color:var(--err)}
+    #bts-estimate .bts-e{color:var(--err);font-size:14px;margin-top:4px;min-height:0}
+    #bts-estimate fieldset{border:0;padding:0;margin:0 0 16px}
+    #bts-estimate .bts-radios{display:flex;gap:10px;flex-wrap:wrap}
+    #bts-estimate .bts-radios label{font-weight:400;display:flex;align-items:center;gap:8px;border:1px solid var(--bd);border-radius:8px;padding:10px 14px;cursor:pointer;min-height:48px;margin:0}
+    #bts-estimate .bts-check{display:flex;gap:10px;align-items:flex-start;font-weight:400;margin-bottom:14px}
+    #bts-estimate .bts-check input{width:22px;height:22px;margin-top:2px;flex:none}
+    #bts-estimate .bts-hp{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden}
+    #bts-estimate button.bts-submit{width:100%;background:var(--g);color:#fff;border:0;border-radius:10px;font:inherit;font-size:19px;font-weight:700;padding:16px;min-height:56px;cursor:pointer;margin-top:4px}
+    #bts-estimate button.bts-submit:hover{background:var(--g2)}
+    #bts-estimate button.bts-submit:disabled{opacity:.6;cursor:wait}
+    #bts-estimate .bts-alert{padding:12px 14px;border-radius:8px;margin:12px 0;display:none}
+    #bts-estimate .bts-alert.err{display:block;background:#fdecee;color:var(--err)}
+    #bts-estimate .bts-done{display:none;text-align:center;padding:28px 12px;border:2px solid var(--g);border-radius:12px}
+    #bts-estimate .bts-done h3{margin:0 0 8px;font-size:24px;color:var(--g)}
+    #bts-estimate .bts-call{display:inline-block;margin-top:14px;font-size:20px;font-weight:700;color:var(--g)}
+    #bts-estimate .bts-small{font-size:13px;color:var(--mut);margin-top:12px}
+  </style>
+
+  <div class="bts-top">
+    <h2 data-t="title">Free Estimate</h2>
+    <div class="bts-lang" role="group" aria-label="Language / Idioma">
+      <button type="button" data-lang="en" aria-pressed="true">English</button>
+      <button type="button" data-lang="es" aria-pressed="false">Español</button>
+    </div>
+  </div>
+  <p class="bts-sub" data-t="subtitle">Tell us about your trees. We'll get back to you quickly.</p>
+
+  <form novalidate>
+    <div class="bts-f">
+      <label for="bts-name" data-t="name">Your name</label>
+      <input id="bts-name" name="name" type="text" autocomplete="name" maxlength="200" required>
+      <div class="bts-e" id="bts-name-e" aria-live="polite"></div>
+    </div>
+
+    <div class="bts-row two">
+      <div class="bts-f">
+        <label for="bts-phone" data-t="phone">Phone</label>
+        <input id="bts-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" maxlength="40">
+        <div class="bts-e" id="bts-phone-e" aria-live="polite"></div>
+      </div>
+      <div class="bts-f">
+        <label for="bts-email"><span data-t="email">Email</span> <span class="bts-opt" data-t="optional">(optional)</span></label>
+        <input id="bts-email" name="email" type="email" autocomplete="email" maxlength="254">
+        <div class="bts-e" id="bts-email-e" aria-live="polite"></div>
+      </div>
+    </div>
+
+    <div class="bts-f">
+      <label for="bts-address" data-t="address">Street address of the trees</label>
+      <input id="bts-address" name="address" type="text" autocomplete="street-address" maxlength="200" required>
+      <div class="bts-e" id="bts-address-e" aria-live="polite"></div>
+    </div>
+
+    <div class="bts-row addr">
+      <div class="bts-f">
+        <label for="bts-city" data-t="city">City</label>
+        <input id="bts-city" name="city" type="text" autocomplete="address-level2" maxlength="100" required>
+        <div class="bts-e" id="bts-city-e" aria-live="polite"></div>
+      </div>
+      <div class="bts-f">
+        <label for="bts-zip" data-t="zip">ZIP</label>
+        <input id="bts-zip" name="zip" type="text" autocomplete="postal-code" inputmode="numeric" maxlength="5" pattern="[0-9]{5}" required>
+        <div class="bts-e" id="bts-zip-e" aria-live="polite"></div>
+      </div>
+    </div>
+
+    <div class="bts-f">
+      <label for="bts-service" data-t="service">What do you need?</label>
+      <select id="bts-service" name="service">
+        <option value="tree_removal" data-t="s_removal">Tree removal</option>
+        <option value="tree_trimming" data-t="s_trimming">Tree trimming / pruning</option>
+        <option value="stump_grinding" data-t="s_stump">Stump grinding</option>
+        <option value="storm_damage" data-t="s_storm">Storm damage</option>
+        <option value="other" data-t="s_other">Other / not sure</option>
+      </select>
+    </div>
+
+    <fieldset>
+      <legend data-t="type">Property type</legend>
+      <div class="bts-radios">
+        <label><input type="radio" name="lead_type" value="residential" checked> <span data-t="home">Home</span></label>
+        <label><input type="radio" name="lead_type" value="commercial"> <span data-t="business">Business / HOA / rental</span></label>
+      </div>
+    </fieldset>
+
+    <div class="bts-f">
+      <label for="bts-desc"><span data-t="desc">Describe the job</span> <span class="bts-opt" data-t="optional">(optional)</span></label>
+      <textarea id="bts-desc" name="description" maxlength="2000" data-tp="desc_ph" placeholder="How many trees, how tall, near the house or power lines?"></textarea>
+    </div>
+
+    <label class="bts-check"><input type="checkbox" name="urgent"> <span data-t="urgent">This is urgent (a tree or branch has fallen or could fall soon)</span></label>
+    <label class="bts-check"><input type="checkbox" name="sms_consent" checked> <span data-t="consent">Bonilla's Tree Services may call or text me at this number about this request. Message and data rates may apply. Reply STOP to opt out.</span></label>
+
+    <div class="bts-hp" aria-hidden="true">
+      <label for="bts-cw">Company website</label>
+      <input id="bts-cw" name="company_website" type="text" tabindex="-1" autocomplete="off">
+    </div>
+
+    <div class="cf-turnstile" data-sitekey="0x4AAAAAAF6ZbWF69tBgdrLj" data-callback="btsTurnstileOk" data-expired-callback="btsTurnstileExpired" data-size="flexible"></div>
+    <div class="bts-e" id="bts-ts-e" aria-live="polite"></div>
+
+    <div class="bts-alert" role="alert"></div>
+    <button type="submit" class="bts-submit" data-t="submit">Request my free estimate</button>
+    <p class="bts-small" data-t="privacy">We only use your information to respond to this request.</p>
+  </form>
+
+  <div class="bts-done" role="status" tabindex="-1">
+    <h3 data-t="done_title">Thank you!</h3>
+    <p data-t="done_body">We received your request and will contact you soon.</p>
+    <p data-t="done_call">Need us sooner? Call:</p>
+    <a class="bts-call" href="tel:+18474091584">(847) 409-1584</a>
+  </div>
+
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  <script>
+  (function () {
+    var WORKER_URL = 'https://bonilla-intake.YOUR-SUBDOMAIN.workers.dev/v1/estimate-requests';
+
+    var T = {
+      en: {
+        title: 'Free Estimate', subtitle: "Tell us about your trees. We'll get back to you quickly.",
+        name: 'Your name', phone: 'Phone', email: 'Email', optional: '(optional)',
+        address: 'Street address of the trees', city: 'City', zip: 'ZIP',
+        service: 'What do you need?', s_removal: 'Tree removal', s_trimming: 'Tree trimming / pruning',
+        s_stump: 'Stump grinding', s_storm: 'Storm damage', s_other: 'Other / not sure',
+        type: 'Property type', home: 'Home', business: 'Business / HOA / rental',
+        desc: 'Describe the job', desc_ph: 'How many trees, how tall, near the house or power lines?',
+        urgent: 'This is urgent (a tree or branch has fallen or could fall soon)',
+        consent: "Bonilla's Tree Services may call or text me at this number about this request. Message and data rates may apply. Reply STOP to opt out.",
+        submit: 'Request my free estimate', sending: 'Sending...',
+        privacy: 'We only use your information to respond to this request.',
+        done_title: 'Thank you!', done_body: 'We received your request and will contact you soon.',
+        done_call: 'Need us sooner? Call:',
+        e_required: 'Please fill this in.', e_phone: 'Please enter a 10-digit phone number.',
+        e_email: 'Please check this email address.', e_contact: 'Please give us a phone number or email.',
+        e_zip: 'Please enter a 5-digit ZIP code.', e_ts: 'Please complete the check above.',
+        e_send: 'Something went wrong. Please try again, or call us at (847) 409-1584.',
+        e_verify: 'We could not verify your request. Please try again.'
+      },
+      es: {
+        title: 'Estimado gratis', subtitle: 'Cuéntenos sobre sus árboles. Le responderemos pronto.',
+        name: 'Su nombre', phone: 'Teléfono', email: 'Correo electrónico', optional: '(opcional)',
+        address: 'Dirección donde están los árboles', city: 'Ciudad', zip: 'Código postal',
+        service: '¿Qué necesita?', s_removal: 'Quitar un árbol', s_trimming: 'Podar árboles',
+        s_stump: 'Moler tocón', s_storm: 'Daño por tormenta', s_other: 'Otro / no estoy seguro',
+        type: 'Tipo de propiedad', home: 'Casa', business: 'Negocio / HOA / renta',
+        desc: 'Describa el trabajo', desc_ph: '¿Cuántos árboles, qué tan altos, cerca de la casa o de cables?',
+        urgent: 'Es urgente (un árbol o rama se cayó o podría caerse pronto)',
+        consent: "Bonilla's Tree Services puede llamarme o enviarme mensajes de texto a este número sobre esta solicitud. Pueden aplicar tarifas de mensajes y datos. Responda STOP para cancelar.",
+        submit: 'Pedir mi estimado gratis', sending: 'Enviando...',
+        privacy: 'Solo usamos su información para responder a esta solicitud.',
+        done_title: '¡Gracias!', done_body: 'Recibimos su solicitud y nos comunicaremos pronto.',
+        done_call: '¿Lo necesita antes? Llame al:',
+        e_required: 'Por favor complete este campo.', e_phone: 'Escriba un número de 10 dígitos.',
+        e_email: 'Revise el correo electrónico.', e_contact: 'Escriba un teléfono o un correo.',
+        e_zip: 'Escriba un código postal de 5 dígitos.', e_ts: 'Complete la verificación de arriba.',
+        e_send: 'Algo salió mal. Intente de nuevo o llámenos al (847) 409-1584.',
+        e_verify: 'No pudimos verificar su solicitud. Intente de nuevo.'
+      }
+    };
+
+    var root = document.getElementById('bts-estimate');
+    var form = root.querySelector('form');
+    var done = root.querySelector('.bts-done');
+    var alertBox = root.querySelector('.bts-alert');
+    var submitBtn = root.querySelector('.bts-submit');
+    var lang = (navigator.language || '').toLowerCase().indexOf('es') === 0 ? 'es' : 'en';
+    var token = '';
+    var intakeKey = newKey();
+
+    function newKey() {
+      if (window.crypto && crypto.randomUUID) return crypto.randomUUID();
+      return 'k-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 12);
+    }
+    function t(k) { return T[lang][k] || T.en[k] || ''; }
+
+    function setLang(l) {
+      lang = l;
+      root.setAttribute('lang', l);
+      root.querySelectorAll('[data-t]').forEach(function (el) { el.textContent = t(el.getAttribute('data-t')); });
+      root.querySelectorAll('[data-tp]').forEach(function (el) { el.setAttribute('placeholder', t(el.getAttribute('data-tp'))); });
+      root.querySelectorAll('.bts-lang button').forEach(function (b) {
+        b.setAttribute('aria-pressed', String(b.getAttribute('data-lang') === l));
+      });
+    }
+    root.querySelectorAll('.bts-lang button').forEach(function (b) {
+      b.addEventListener('click', function () { setLang(b.getAttribute('data-lang')); });
+    });
+    setLang(lang);
+
+    window.btsTurnstileOk = function (tok) { token = tok; showErr('ts', ''); };
+    window.btsTurnstileExpired = function () { token = ''; };
+    function resetTurnstile() {
+      token = '';
+      if (window.turnstile) { try { window.turnstile.reset(root.querySelector('.cf-turnstile')); } catch (e) {} }
+    }
+
+    function field(name) { return form.elements[name]; }
+    function showErr(id, msg) {
+      var box = document.getElementById('bts-' + id + '-e');
+      if (box) box.textContent = msg;
+      var input = document.getElementById('bts-' + id);
+      if (input) {
+        if (msg) { input.setAttribute('aria-invalid', 'true'); input.setAttribute('aria-describedby', 'bts-' + id + '-e'); }
+        else input.removeAttribute('aria-invalid');
+      }
+    }
+
+    // Clear a field's error as soon as the customer edits it.
+    ['name', 'phone', 'email', 'address', 'city', 'zip'].forEach(function (f) {
+      field(f).addEventListener('input', function () {
+        showErr(f, '');
+        if (f === 'phone' || f === 'email') { showErr('phone', ''); showErr('email', ''); }
+      });
+    });
+
+    function digits(s) { return (s || '').replace(/\D/g, ''); }
+    function validPhone(s) { var d = digits(s); return /^1?[2-9]\d{9}$/.test(d); }
+
+    function validate() {
+      var ok = true, first = null;
+      ['name', 'phone', 'email', 'address', 'city', 'zip'].forEach(function (f) { showErr(f, ''); });
+      showErr('ts', '');
+      function bad(f, k) { showErr(f, t(k)); ok = false; if (!first) first = document.getElementById('bts-' + f); }
+
+      var name = field('name').value.trim(), phone = field('phone').value.trim(), email = field('email').value.trim();
+      if (name.length < 2) bad('name', 'e_required');
+      if (!phone && !email) bad('phone', 'e_contact');
+      else if (phone && !validPhone(phone)) bad('phone', 'e_phone');
+      if (email && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) bad('email', 'e_email');
+      if (field('address').value.trim().length < 3) bad('address', 'e_required');
+      if (field('city').value.trim().length < 2) bad('city', 'e_required');
+      if (!/^\d{5}$/.test(field('zip').value.trim())) bad('zip', 'e_zip');
+      if (ok && !token) { showErr('ts', t('e_ts')); ok = false; }
+      if (first) first.focus();
+      return ok;
+    }
+
+    var SERVER_FIELD = { name: 'name', phone: 'phone', email: 'email', address: 'address', city: 'city', zip: 'zip' };
+    var SERVER_MSG = { required: 'e_required', invalid: 'e_required', phone_or_email_required: 'e_contact' };
+
+    form.addEventListener('submit', function (ev) {
+      ev.preventDefault();
+      alertBox.className = 'bts-alert';
+      if (!validate()) return;
+
+      var consentEl = root.querySelector('[data-t="consent"]');
+      var payload = {
+        intake_key: intakeKey,
+        name: field('name').value,
+        phone: field('phone').value,
+        email: field('email').value,
+        address: field('address').value,
+        city: field('city').value,
+        zip: field('zip').value,
+        service: field('service').value,
+        lead_type: (form.querySelector('input[name="lead_type"]:checked') || {}).value || 'residential',
+        description: field('description').value,
+        urgent: field('urgent').checked,
+        sms_consent: field('sms_consent').checked,
+        consent_text: field('sms_consent').checked ? consentEl.textContent : '',
+        language: lang,
+        company_website: field('company_website').value,
+        turnstile_token: token
+      };
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = t('sending');
+
+      fetch(WORKER_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      }).then(function (res) {
+        return res.json().catch(function () { return {}; }).then(function (data) { return { status: res.status, data: data }; });
+      }).then(function (r) {
+        if (r.status === 200 && r.data.ok) {
+          form.style.display = 'none';
+          done.style.display = 'block';
+          done.focus();
+          intakeKey = newKey();
+          return;
+        }
+        resetTurnstile();
+        if (r.status === 400 && r.data.fields) {
+          Object.keys(r.data.fields).forEach(function (f) {
+            if (SERVER_FIELD[f]) showErr(SERVER_FIELD[f], t(f === 'zip' ? 'e_zip' : f === 'phone' && r.data.fields[f] === 'invalid' ? 'e_phone' : f === 'email' ? 'e_email' : SERVER_MSG[r.data.fields[f]] || 'e_required'));
+          });
+          return;
+        }
+        alertBox.textContent = r.status === 403 ? t('e_verify') : t('e_send');
+        alertBox.className = 'bts-alert err';
+      }).catch(function () {
+        // Network failure: keep the same intake key so a retry can't create a duplicate.
+        resetTurnstile();
+        alertBox.textContent = t('e_send');
+        alertBox.className = 'bts-alert err';
+      }).then(function () {
+        submitBtn.disabled = false;
+        submitBtn.textContent = t('submit');
+      });
+    });
+  })();
+  </script>
+</div>

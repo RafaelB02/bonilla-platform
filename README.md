@@ -9,8 +9,11 @@ supabase/
   migrations/   Database changes, applied in filename order. Never edit one
                 that has already been applied to production; add a new file.
   tests/        SQL tests. local_supabase_stub.sql is for local Postgres only.
-apps/           (coming) owner app and admin dashboard
-workers/        (coming) Cloudflare Worker: form intake, alerts, cron jobs
+apps/
+  website-form/ Bilingual estimate form, pasted into WordPress
+workers/
+  intake/       Cloudflare Worker: receives the form, saves the lead, emails
+                the owner. See workers/intake/README.md
 ```
 
 ## Migration 001: core CRM
