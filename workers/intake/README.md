@@ -43,15 +43,15 @@ cd workers/intake
 npm install
 npx wrangler login            # opens Cloudflare in the browser
 # 1. Put your Supabase Project URL in wrangler.toml (SUPABASE_URL)
-npx wrangler deploy           # prints https://bonilla-intake.<you>.workers.dev
+npx wrangler deploy           # prints https://bonilla-intake.bonillastreeservices.workers.dev
 npx wrangler secret put SUPABASE_SERVICE_ROLE_KEY
 npx wrangler secret put TURNSTILE_SECRET_KEY
 npx wrangler secret put RESEND_API_KEY
-curl https://bonilla-intake.<you>.workers.dev/health   # {"ok":true}
+curl https://bonilla-intake.bonillastreeservices.workers.dev/health   # {"ok":true}
 ```
 
 Then set `WORKER_URL` in `apps/website-form/estimate-form.html` to
-`https://bonilla-intake.<you>.workers.dev/v1/estimate-requests`.
+`https://bonilla-intake.bonillastreeservices.workers.dev/v1/estimate-requests`.
 
 ## Test
 
