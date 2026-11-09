@@ -7,7 +7,7 @@ enabled = true
 
 # Plain (non-secret) settings. Secrets are set with `wrangler secret put` - see README.
 [vars]
-SUPABASE_URL = "https://YOUR-PROJECT-REF.supabase.co"
+SUPABASE_URL = "https://qvlknnkrlkdtmfvjynji.supabase.co"
 ALERT_TO_EMAIL = "bonillastreeservice@gmail.com"
 # Until bonillastreeservices.com is verified in Resend, onboarding@resend.dev can
 # only deliver to the email address that owns the Resend account.
